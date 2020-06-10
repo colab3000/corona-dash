@@ -4,5 +4,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def hewwo():
-    #content = open('test.jpg', 'r')
-    return render_template('dashboard.html',image=content)
+    return "hewwo"
+
+@app.route('/home')
+def homepage():
+    return render_template("dashboard.html")

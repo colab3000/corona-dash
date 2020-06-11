@@ -1,0 +1,16 @@
+.canvas_location{
+    width:49%;
+    height:auto;
+    border:1px solid black;
+    display: block;
+    float: left;
+    padding:0;
+}
+.canvas_config{
+    width:49%;
+    height:200px;
+    border:1px solid black;
+    display:block;
+    float: right;
+    padding:0;
+}

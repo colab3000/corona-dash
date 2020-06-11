@@ -9,3 +9,7 @@ def hewwo():
 @app.route('/home')
 def homepage():
     return render_template("dashboard.html")
+
+@app.route('/mapp')
+def mapp():
+    pass

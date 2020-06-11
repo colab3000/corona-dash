@@ -3,6 +3,7 @@ from pprint import pprint
 from datetime import date, timedelta
 
 ADDR = "https://api.covid19api.com/"
+##mapapi for googlemaps and kenyan county stats
 
 def grab_country_total(country_name):
     '''

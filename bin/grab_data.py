@@ -10,8 +10,8 @@ def grab_country_total(country_name):
     format -> json
     '''
     req_format = f"{ADDR}/total/country/{country_name}"
-    res = requests.get(req_format)
-    return res.json()
+    response = requests.get(req_format)
+    return response.json()
 
 def grab_country_going_back(country_name, days):
     '''
@@ -25,3 +25,9 @@ def grab_country_going_back(country_name, days):
     req_format = f"{ADDR}/country/{country_name}/status/confirmed/live?from={then}&to={today}"
     response = requests.get(req_format)
     return response.json()
+
+def parse_content(content):
+    '''
+    Create tuple of data that can be graphed by chartjs
+    '''
+    pass

@@ -17,11 +17,13 @@
     <div class='navbar navbar-dark bg-dark'> <span class="navbar-text">Flask Corona Dash</span> </div>
     <br><br>
     <div style="margin: auto; width: 100%;">
-    <div class='canvas_location'>
-        <canvas id="graph"></canvas>
-    </div>
-    <div class='canvas_config'>
-    </div>
+         <canvas id="graph"></canvas>   
+        <div class='canvas_config'>
+            <form id="date_form">
+                <input type="date" name="date" class="form_control">
+                <button type="submit" id="submit_date" class="form-control">submit date</button>
+            </form>   
+        </div>
     </div>
     <script src = {{ url_for('static', filename='main.js')}}></script>    
 </body>

@@ -5,9 +5,7 @@
     <meta name="viewport" 
         content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" 
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" 
-        crossorigin="anonymous">
+        href={{ url_for('static', filename='bootstrap.min.css') }}>
     <script src= {{ url_for('static', filename='Chart.min.js') }}></script>
     <script src = {{ url_for('static' , filename='jquery.min.js')}}></script>
     <title>Rona Dash</title>
@@ -20,8 +18,13 @@
          <canvas id="graph"></canvas>   
         <div class='canvas_config'>
             <form id="date_form">
-                <input type="date" name="date" class="form_control">
-                <button type="submit" id="submit_date" class="form-control">submit date</button>
+                <input type="text" placeholder="Country" name="country_name" class="form-control">
+                <input type="status" placeholder="Status" name="status" class="form-control">
+                <label for="date_from">Date From</label>
+                <input type="date" name="date_from" class="form-control">
+                <label for="date_to">Date To</label>
+                <input type="date" name="date_to" class="form-control">
+                <button type="submit" id="submitconfig" class="form-control">submit date</button>
             </form>   
         </div>
     </div>

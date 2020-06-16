@@ -1,25 +1,23 @@
 $('document').ready( () => {
-    $('#date_form').on('submit', (e) => {
-        e.preventDefault()
-        //todo
-        //get date, country, time span
-    })
+    let today = Date().toISOString().split('T')[0]
+    let origin_date = "2019-12-31"
+    $('input[name="date_from"]').attr('max', today)   
+    $('input[name="date_from"]').attr('min', origin_date)
+    $('input[name="date_to"]').attr('max', today)
+    $('input[name="date_to"]').attr('min', origin_date)
 
-    chart = (cases, time) => {
-        //todo
-        //graph of deaths over time
-        //graph of infections over time
-        //graph of recoveries over time
-        let context = document.getElementById('graph').getContext('2d')
-        let chart = new Chart(context, {
-            type: 'line',
-            labels:[...time],
-            data: {
-                dataset:[{
-                    label:'random',
-                    data:[...cases]
-                }],
-            }
+
+    charter = (data, time) => {
+        let context = document.getElementById('graph')
+        chart = new Chart(context, {
+            type:'line',
+            data:{
+                labels:time,
+                datasets:[{
+                    data:cases,
+                    label:'Garbage'
+            }]
+          }
         })
     }
 
@@ -38,16 +36,28 @@ $('document').ready( () => {
         return content
     }
 
-    get_live_country = (country_name, days, status) => {
-        let days_as_milliseconds = days * 24 * 60 * 60 * 1000 
-        let x = new Date()
-        let y = new Date(x.getTime() - days_as_milliseconds)
-        stringify = dateobj => { return `${dateobj.toISOString().split('T')[0]}T00:00:00Z`}
+    get_live_country = (country_name, date_from, date_to, status) => {
         let addr = `https://api.covid19api.com`
-        let request = `${addr}/total/country/${country_name}/status/${status}?from=${stringify(y)}&to=${stringify(x)}`
+        let request = `${addr}/total/country/${country_name}/status/${status}?from=${date_from}&to=${date_to}`
         content = get_request(request)
         return content
     }
-    
+
+    //date_from
+    //date_to
+    //country_name
+    //status
+    $('#date_form').on('submit' , (e) =>{
+        e.preventDefault()
+        let data = {
+            'date_from':$('input[name="date_from"]').val(),
+            'date_to':$('input[name="date_to"]').val(),
+            'country_name':$('input[name="country_name"]').val(),
+            'status':$('input[name="status"]').val()
+        }
+    })
+
+
+
 })
 

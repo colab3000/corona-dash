@@ -9,8 +9,6 @@
 .canvas_config{
     width:49%;
     height:200px;
-    border:1px solid black;
     display:block;
     float: right;
-    padding:0;
 }

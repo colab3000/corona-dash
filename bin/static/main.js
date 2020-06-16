@@ -1,5 +1,5 @@
 $('document').ready( () => {
-    let today = Date().toISOString().split('T')[0]
+    let today = new Date().toISOString().split('T')[0]
     let origin_date = "2019-12-31"
     $('input[name="date_from"]').attr('max', today)   
     $('input[name="date_from"]').attr('min', origin_date)
@@ -7,15 +7,16 @@ $('document').ready( () => {
     $('input[name="date_to"]').attr('min', origin_date)
 
 
-    charter = (data, time) => {
+    charter = (content) => {
+        let {numbers, time} = content
         let context = document.getElementById('graph')
         chart = new Chart(context, {
             type:'line',
             data:{
                 labels:time,
                 datasets:[{
-                    data:cases,
-                    label:'Garbage'
+                    data:numbers,
+                    label:'Cases'
             }]
           }
         })
@@ -36,7 +37,7 @@ $('document').ready( () => {
         return content
     }
 
-    get_live_country = (country_name, date_from, date_to, status) => {
+    get_live_country = async (country_name, date_from, date_to, status) => {
         let addr = `https://api.covid19api.com`
         let request = `${addr}/total/country/${country_name}/status/${status}?from=${date_from}&to=${date_to}`
         content = get_request(request)
@@ -55,9 +56,9 @@ $('document').ready( () => {
             'country_name':$('input[name="country_name"]').val(),
             'status':$('input[name="status"]').val()
         }
+        let x = get_live_country(data['country_name'],data['date_from'] ,data['date_to'], data['status'])
+        charter(x)
     })
-
-
 
 })
 
